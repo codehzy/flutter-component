@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'pages/AnimateBase.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -63,60 +65,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('home'),
       ),
       body: Center(
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 5000),
-          width: 300,
-          height: 300,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [Colors.orange, Colors.white],
-                stops: [0.2, 0.3]),
-            boxShadow: const [BoxShadow(spreadRadius: 25, blurRadius: 25)],
-            borderRadius: BorderRadius.circular(150),
-          ),
-          // child: const Center(child: CircularProgressIndicator()),
-          child: AnimatedSwitcher(
-            transitionBuilder: ((child, animation) {
-              return FadeTransition(
-                  opacity: animation,
-                  child: ScaleTransition(scale: animation, child: child));
-            }),
-            duration: const Duration(seconds: 2),
-            // child: Image.network(
-            //     'https://img.tukuppt.com/bg_grid/00/24/07/mxgEB6Lqhj.jpg!/fh/350')
-            child: Text(
-              'hi',
-              key: UniqueKey(),
-              style: const TextStyle(fontSize: 100),
-            ),
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
+          child: ElevatedButton(
         onPressed: () {
-          // setState(() {
-          //   _height += 200;
-          //   if (_height > 500) _height = 200;
-          // });
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AnimateSwitchers()));
         },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: const Text('go-Animate'),
+      )),
     );
   }
 }
